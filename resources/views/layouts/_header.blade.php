@@ -9,7 +9,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#" style="padding-top: 5px;"><img src="images/RedBird.png" height="40px;"></a>
+        <a class="navbar-brand" href="#" style="padding-top: 5px;"><img src="../images/RedBird.png" height="40px;" alt='RedBird'></a>
         <a class="navbar-brand" href="#"> 红鸟软件</a>
       </div>
 
@@ -17,7 +17,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">学员管理 <span class="caret"></span></a>
+            <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">学员管理 <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="{{ route('students_info_maintain') }}">学员信息维护</a></li>
               <li><a href="{{ route('students_courses_maintain') }}">学员课程维护</a></li>

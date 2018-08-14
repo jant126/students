@@ -12,6 +12,7 @@
 */
 
 Route::get('signup', 'UsersController@create')->name('signup');
+Route::resource('users', 'UsersController');
 
 Route::get('students_info_maintain', 'StudentsController@create')->name('students_info_maintain');
 Route::get('students_courses_maintain', 'StudentsController@courses_maintain')->name('students_courses_maintain');
