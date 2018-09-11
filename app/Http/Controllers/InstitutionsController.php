@@ -64,6 +64,9 @@ class InstitutionsController extends Controller
     public function index(){
 
        $institutions = Institution::where('user_id','=',Auth::user()->id)->paginate(10);
+        if ($institutions->count() == 0) {
+            session()->flash('info', '暂无教师信息');
+        }
        return view('institutions.index',compact('institutions'));
     }
     public function destroy(Institution $institution){
@@ -71,6 +74,6 @@ class InstitutionsController extends Controller
         //$this->authorize('destroy',$user);
         $institution->delete();
         session()->flash('success','成功删除机构：'.$institution->institution_name);
-        return back();
+        return view('institutions.index');
     }
 }

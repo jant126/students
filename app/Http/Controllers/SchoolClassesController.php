@@ -58,6 +58,9 @@ class SchoolClassesController extends Controller
     }
     public function index(){
         $schoolclasses = User::find(Auth::user()->id)->schoolclasses()->paginate(10);
+        if ($schoolclasses->count() == 0) {
+            session()->flash('info', '暂无教师信息');
+        }
         return view('schoolclasses.index',compact('schoolclasses'));
     }
     public function update(SchoolClass $schoolclass, Request $request){
@@ -84,7 +87,7 @@ class SchoolClassesController extends Controller
         //$this->authorize('destroy',$user);
         $schoolclass->delete();
         session()->flash('success','成功删除班级：'.$schoolclass->class_name);
-        return back();
+        return view('schoolclasses.index');
     }
 //    public function info_maintain()
 //    {

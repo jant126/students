@@ -66,6 +66,9 @@ class StudentsController extends Controller
     }
     public function index(){
         $students = User::find(Auth::user()->id)->students()->paginate(10);
+        if ($students->count() == 0) {
+            session()->flash('info', '暂无学员信息');
+        }
         return view('students.index',compact('students'));
     }
     public function update(Student $student, Request $request){
@@ -104,7 +107,6 @@ class StudentsController extends Controller
         $student->delete();
         session()->flash('success','成功删除学生：'.$student->student_name);
         return redirect()->route('students.index');
-
     }
 
     

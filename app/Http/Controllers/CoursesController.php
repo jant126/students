@@ -53,6 +53,9 @@ class CoursesController extends Controller
     }
     public function index(){
         $courses = User::find(Auth::user()->id)->courses()->paginate(10);
+        if ($courses->count() == 0) {
+            session()->flash('info', '暂无教师信息');
+        }
         return view('courses.index',compact('courses'));
     }
     public function update(Course $course, Request $request){
@@ -76,6 +79,6 @@ class CoursesController extends Controller
         //$this->authorize('destroy',$user);
         $course->delete();
         session()->flash('success','成功删除课程：'.$course->course_name);
-        return back();
+        return view('courses.index');
     }
 }
