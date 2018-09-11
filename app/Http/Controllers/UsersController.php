@@ -3,26 +3,40 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\User;
 use Auth;
 class UsersController extends Controller
 {
     //
     public function __construct()
     {
-        $this->middleware('auth', [
-            'except' => ['show', 'create', 'store']
-        ]);
+        $this->middleware('auth');
+   //     $this->middleware('auth', [
+  //          'except' => ['show','create', 'store', 'index']
+  //      ]);
+
+   //     $this->middleware('guest', [
+   //         'only' => ['create']
+   //     ]);
+
     }
 
+    public function index(){
+        $users = User::where('creator_id','=',Auth::user()->id)->paginate(10);
+        return view('users.index', compact('users'));
+    }
+    ///
+    /// 根据指定的user显示user的详细信息
+    ///
     public function show(User $user){
     	return view('users.show', compact('user'));
     }
-
+    ///
+    /// 显示添加新用户的界面
+    ///
     public function create(){
     	return view('users.create');
     }
-
     public function store(Request $request){
     	$this->validate($request, [
     		'name' => 'required|max:50',
@@ -35,18 +49,15 @@ class UsersController extends Controller
     		'email' => $request->email,
     		'password' => bcrypt( $request->password),
             'phone' => $request->phone,
-            'institution_name' => $request->institution_name,
-            'institution_code' => $request->institution_code,
-            'institution_content' => $request->institution_content,
-            'institution_address' => $request->institution_address,
-            'institution_legal_person' =>$request->institution_legal_person
+            'role' => $request->role,
+            'is_admin' => false
     	]);
-        Auth::login($user);
-    	session()->flash('success','欢迎您');
+       // Auth::login($user);
+    	session()->flash('success','用户添加成功！ 用户信息如下：');
 
     	return redirect()->route('users.show',[$user]);
     }
-
+    //显示编辑用户界面
     public function edit(User $user){
         $this->authorize('update', $user);
         return view('users.edit', compact('user'));
@@ -65,13 +76,19 @@ class UsersController extends Controller
             $data['password'] = bcrypt( $request->password);
         }
         $data['phone'] = $request->phone;
-        $data['institution_name'] = $request->institution_name;
-        $data['institution_code'] = $request->institution_code;
-        $data['institution_content'] = $request->institution_content;
-        $data['institution_address'] = $request->institution_address;
-        $data['institution_legal_person'] = $request->institution_legal_person;
+        $data['role'] = $request->role;
         $user->update($data);
         session()->flash('success', '个人资料更新成功！');
         return redirect()->route('users.show', $user->id);
     }
+
+    public function destroy(User $user){
+       // $user_name = $user->name;
+        $this->authorize('destroy',$user);
+        $user->delete();
+        session()->flash('success','成功删除用户：'.$user->name);
+        return back();
+    }
+
+
 }

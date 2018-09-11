@@ -2,7 +2,14 @@
 <html>
   <head>
     <title>@yield('title', '红鸟软件') </title>
-    <link rel="stylesheet" href="/css/app.css">
+    @section('css_section')
+    <link rel="stylesheet" href='/css/app.css'>
+    <link rel="stylesheet" href='/css/my_css.css'>
+    @show
+
+    @section('js_section')
+    <script src="/js/app.js"></script>
+    @show
   </head>
   <body>
     @include('layouts._header')
@@ -14,6 +21,6 @@
         @include('layouts._footer')  
       </div>
     </div>  
-    <script src="/js/app.js"></script>
+
   </body>
 </html>

@@ -5,7 +5,7 @@
 <div class="col-md-offset-2 col-md-8">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h5>注册</h5>
+      增加用户
     </div>
     <div class="panel-body">
 	@include('shared._errors')
@@ -29,35 +29,21 @@
             <label for="password_confirmation">确认密码：</label>
             <input type="password" name="password_confirmation" class="form-control" value="{{ old('password_confirmation') }}">
           </div>
-		  <div class="form-group">
+		      <div class="form-group">
             <label for="phone">手机号码：</label>
             <input type="text" name="phone" class="form-control" value="{{ old('phone') }}">
           </div>
-		  
-		  <div class="form-group">
-            <label for="institution_name">机构名称：</label>
-            <input type="text" name="institution_name" class="form-control" value="{{ old('institution_name') }}">
+          <div class="form-group">
+            <label for="role">角色类型：</label>
+            <select id = "role_list" name="role_list" 
+            onchange="$('#role').val( $('#role_list option:selected').val() );">
+              <option value="教师用户" selected="selected">教师用户</option>
+              <option value="家长用户">家长用户</option>
+            </select>
+            <input type="hidden" name="role" id="role" value="教师用户">
           </div>
-		  
-		  <div class="form-group">
-            <label for="institution_code">机构代码：</label>
-            <input type="text" name="institution_code" class="form-control" value="{{ old('institution_code') }}">
-          </div>
-		  
-		  <div class="form-group">
-            <label for="institution_content">机构简介：</label>
-            <textarea name="institution_content" class="form-control">{{ old('institution_content') }}</textarea>
-          </div>
-		  
-		  <div class="form-group">
-            <label for="institution_address">机构地址：</label>
-            <input type="text" name="institution_address" class="form-control" value="{{ old('institution_address') }}">
-          </div>
-		  
-		  <div class="form-group">
-            <label for="institution_legal_person">机构法人：</label>
-            <input type="text" name="institution_legal_person" class="form-control" value="{{ old('institution_legal_person') }}">
-          </div>
+
+
           {{ csrf_field() }}
           <button type="submit" class="btn btn-primary">注册</button>
       </form>

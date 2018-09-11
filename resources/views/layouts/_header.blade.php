@@ -20,7 +20,14 @@
               <a  class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 学员管理 <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="{{ route('students_info_maintain') }}">学员信息维护</a></li>
+                <!--教师信息维护三级子菜单-->
+                <li class="dropdown-submenu">
+                  <a href="#">学员信息维护</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ route('students.create') }}">新增学员</a></li>
+                    <li><a href="{{ route('students.index') }}">学员列表</a></li>
+                  </ul>
+                </li>
                 <li><a href="{{ route('students_courses_maintain') }}">学员课程维护</a></li>
               </ul>
             </li>
@@ -28,7 +35,15 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 班级管理 <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="{{ route('classes_info_maintain') }}">班级信息维护</a></li>
+                <!--班级信息维护三级子菜单-->
+                <li class="dropdown-submenu">
+                  <a href="#">班级信息维护</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ route('schoolclasses.create') }}">新增班级</a></li>
+                    <li><a href="{{ route('schoolclasses.index') }}">班级列表</a></li>
+                  </ul>
+                </li>
+
                 <li><a href="{{ route('class_course_setting') }}">班级课程设置</a></li>
                 <li><a href="{{ route('classrooms_setting') }}">班级教室设置</a></li>
                 <li><a href="{{ route('class_students_setting') }}">班级学员分配</a></li>
@@ -39,17 +54,28 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 教师管理 <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">教师信息维护</a></li>
+                <!--教师信息维护三级子菜单-->
+                <li class="dropdown-submenu">
+                  <a href="#">教师信息维护</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ route('teachers.create') }}">新增教师</a></li>
+                    <li><a href="{{ route('teachers.index') }}">教师列表</a></li>
+                  </ul>
+                </li>
                 <li><a href="#">教师课程设置</a></li>
+                <li><a href="{{ route('users.index')  }}">教师列表</a> </li>
               </ul>
             </li>
 
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                教室管理 <span class="caret"></span></a>
+                机构管理 <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">新增教室</a></li>
-                <li><a href="#">教室列表</a></li>
+                <li><a href="{{ route('classrooms.create') }}">新增教室</a></li>
+                <li><a href="{{ route('classrooms.index') }}">教室列表</a></li>
+                <li class="divider"></li>
+                <li><a href="{{ route('institutions.create') }}">新增机构</a></li>
+                <li><a href="{{ route('institutions.index') }}">机构列表</a></li>
               </ul>
             </li>
 
@@ -57,8 +83,8 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 课程管理 <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">新增或更新课程</a></li>
-                <li><a href="#">课程列表</a></li>
+                <li><a href="{{ route('courses.create') }}">新增课程</a></li>
+                <li><a href="{{ route('courses.index') }}">课程列表</a></li>
               </ul>
             </li>
 
@@ -67,7 +93,9 @@
                 个人账号 <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a class="btn"> {{ Auth::user()->name }}</a></li>
-                <li><a href="{{ route('users.edit', Auth::user()->id) }}">修改个人资料</a></li>
+                <li><a href="{{ route('users.edit', Auth::user()->id) }}">修改个人资料</a></li>   
+                <li><a href="{{ route('users.create') }}">增加用户</a></li> 
+                <li><a href="{{ route('users.index') }}">所有用户</a></li>              
                 <li role="separator" class="divider"></li>
                 <li>
                   <a id="logout"  href="#" >

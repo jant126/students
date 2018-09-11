@@ -1,6 +1,7 @@
 @extends('layouts.default')
 @section('title', '更新个人资料')
 
+<!-- 以下是主页内容   !-->
 @section('content')
     <div class="col-md-offset-2 col-md-8">
         <div class="panel panel-default">
@@ -40,32 +41,18 @@
                         <label for="phone">手机号码：</label>
                         <input type="text" name="phone" class="form-control" value="{{ $user->phone }}">
                     </div>
-
+                    @if ($user->role <> '管理员')
                     <div class="form-group">
-                        <label for="institution_name">机构名称：</label>
-                        <input type="text" name="institution_name" class="form-control" value="{{ $user->institution_name }}">
+                     <label>原角色类型:{{ $user->role }}</label>
+                     <label for="role">新角色类型：</label>
+                        <select id = "role_list" name="role_list" 
+                        onchange="$('#role').val( $('#role_list option:selected').val() );">
+                          <option value="教师用户" selected="selected">教师用户</option>
+                          <option value="家长用户">家长用户</option>
+                        </select>
                     </div>
-
-                    <div class="form-group">
-                        <label for="institution_code">机构代码：</label>
-                        <input type="text" name="institution_code" class="form-control" value="{{ $user->institution_code }}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="institution_content">机构简介：</label>
-                        <input type="text" name="institution_content" class="form-control" value="{{ $user->institution_content }}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="institution_address">机构地址：</label>
-                        <input type="text" name="institution_address" class="form-control" value="{{ $user->institution_address }}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="institution_legal_person">机构法人：</label>
-                        <input type="text" name="institution_legal_person" class="form-control" value="{{ $user->institution_legal_person }}">
-                    </div>
-
+                    @endif
+                    <input type="hidden" name="role" id="role" value="{{ $user->role }}">
                     <button type="submit" class="btn btn-primary">更新</button>
                 </form>
             </div>

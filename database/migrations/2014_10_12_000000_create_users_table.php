@@ -20,12 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('phone')->unique();            //机构负责人手机号码
-            $table->string('institution_name',100)->nullable();           //机构名称
-            $table->string('institution_code',20)->nullable();           //机构代码
-            $table->longText('institution_content')->nullable();        //机构简介
-            $table->string('institution_address')->nullable();        //机构地址
-            $table->string('institution_legal_person',100)->nullable();   //机构法人
+            $table->string('phone')->unique();
+            $table->boolean('is_admin')->default(false);
+            $table->string('role');  //角色：管理员、教师、家长用户
+            $table->unsignedInteger('creator_id')->nullable(); //设置创建者ID
         });
     }
 

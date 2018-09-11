@@ -103,6 +103,48 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+
+        'classroom_address' => [
+            'required' => '教室位置不能空',
+        ],
+        'classroom_name' => [
+            'required' => '教室名称不能空',
+        ],
+        'class_start' => [
+            'required' => '开班时间不能空',
+        ],
+        'class_name' =>[
+            'required' => '班级名称不能为空',
+        ],
+        'class_end' =>[
+            'required' => '结束时间不能为空',
+        ],
+        'course_name' =>[
+            'required' => '课程名称不能为空',
+        ],
+        'course_count' =>[
+            'required' => '课程课时数不能为空',
+        ],
+        'teacher_name' =>[
+            'required' => '老师名称不能为空',
+        ],
+        'teacher_phone' =>[
+            'required' => '老师手机号码不能为空',
+            'unique'   => '老师手机号码已存在',
+            'digits'   => '手机号码必须为11位'
+        ],
+        'student_name' =>[
+            'required' => '学生名称不能为空',
+        ],
+        'student_join_date' =>[
+            'required' => '学生入学日期不能为空',
+            'date' => '学生入学日期格式不正确',
+        ],
+        'phone' =>[
+            'required' => '手机号码不能为空',
+            'unique'   => '手机号码已存在',
+            'digits'   => '手机号码必须为11位'
+        ],
     ],
 
     /*

@@ -16,14 +16,21 @@ Route::delete('logout', 'SessionsController@destroy')->name('logout');
 
 Route::get('signup', 'UsersController@create')->name('signup');
 Route::resource('users', 'UsersController');
+Route::resource('institutions','InstitutionsController');
+Route::resource('classrooms', 'ClassroomsController');
+Route::resource('schoolclasses','SchoolClassesController');
+Route::resource('courses','CoursesController');
+Route::resource('teachers', 'TeachersController');
+Route::resource('students', 'StudentsController');
+//Route::get('schoolclasses/{schoolclasses}', 'SchoolClassesController@show');
 
 Route::get('students_info_maintain', 'StudentsController@create')->name('students_info_maintain');
 Route::get('students_courses_maintain', 'StudentsController@courses_maintain')->name('students_courses_maintain');
 
-Route::get('classes_info_maintain', 'ClassesController@info_maintain')->name('classes_info_maintain');
-Route::get('class_course_setting', 'ClassesController@class_course_setting')->name('class_course_setting');
-Route::get('classrooms_setting', 'ClassesController@classrooms_setting')->name('classrooms_setting');
-Route::get('class_students_setting', 'ClassesController@class_students_setting')->name('class_students_setting');
+Route::get('classes_info_maintain', 'SchoolClassesController@info_maintain')->name('classes_info_maintain');
+Route::get('class_course_setting', 'SchoolClassesController@class_course_setting')->name('class_course_setting');
+Route::get('classrooms_setting', 'SchoolClassesController@classrooms_setting')->name('classrooms_setting');
+Route::get('class_students_setting', 'SchoolClassesController@class_students_setting')->name('class_students_setting');
 Route::get('/', function () {
     return view('home');
 });
