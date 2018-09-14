@@ -4,9 +4,14 @@
         课程课时数：    {{ $course->course_count }}
         {{--创建时间：{{ $schoolclass->created_at }}--}}
     </a>
-    <form action="{{ route('courses.edit', $course->id) }}" method="get">
-        <button type="submit" class="btn btn-sm btn-info update-btn ">修改</button>
-    </form>
+    @if($course->has_lessons == false)
+        <form action="{{ route('create_lessons', $course->id) }}" method="get">
+            <button type="submit" class="btn btn-sm btn-info update-btn ">设置课时</button>
+        </form>
+    @else
+        <button type="submit" class="btn btn-sm btn-info update-btn ">显示课时</button>
+    @endif
+
     <form action="{{ route('courses.destroy', $course->id) }}" method="post">
         {{ csrf_field() }}
         {{ method_field('DELETE') }}

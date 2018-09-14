@@ -59,7 +59,8 @@ class SchoolClassesController extends Controller
     public function index(){
         $schoolclasses = User::find(Auth::user()->id)->schoolclasses()->paginate(10);
         if ($schoolclasses->count() == 0) {
-            session()->flash('info', '暂无教师信息');
+            session()->flash('info', '暂无班级信息，请先增加班级信息！');
+            return redirect()->route('schoolclasses.create');
         }
         return view('schoolclasses.index',compact('schoolclasses'));
     }

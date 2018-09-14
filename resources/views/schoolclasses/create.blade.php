@@ -9,7 +9,8 @@
             </div>
             <div class="panel-body">
                 @include('shared._errors')
-                <form method="POST" action="{{ route('schoolclasses.store') }}">
+                <form class="form-horizontal" method="POST"
+                      action="{{ route('schoolclasses.store') }}">
                     @include('schoolclasses._class')
             {{ csrf_field() }}
             <button type="submit" class="btn btn-primary">添加</button>

@@ -18,7 +18,7 @@
                     dateFormat: "yy-mm-dd",
                     timeFormat: 'hh:mm:ss',
                     defaultSelect:true,
-                    showSecond:true,
+                    // showSecond:true,
                     startDate:new Date(),
                     validateOnBlur: true
                 });

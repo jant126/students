@@ -59,7 +59,8 @@ class TeachersController extends Controller
     public function index(){
         $teachers = User::find(Auth::user()->id)->teachers()->paginate(10);
         if ($teachers->count() == 0) {
-            session()->flash('info', '暂无教师信息');
+            session()->flash('info', '暂无教师信息，请先增加教师！');
+            return redirect()->route('teachers.create');
         }
 //        dump($teachers);
         return view('teachers.index',compact('teachers'));

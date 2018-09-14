@@ -22,7 +22,10 @@ Route::resource('schoolclasses','SchoolClassesController');
 Route::resource('courses','CoursesController');
 Route::resource('teachers', 'TeachersController');
 Route::resource('students', 'StudentsController');
+Route::resource('lessons', 'LessonsController');
 //Route::get('schoolclasses/{schoolclasses}', 'SchoolClassesController@show');
+Route::get('/lessons/course/{course}', 'LessonsController@createLessons')->name('create_lessons');
+Route::get('coures/lessons', 'CoursesController@needLessons')->name('needLessons');
 
 Route::get('students_info_maintain', 'StudentsController@create')->name('students_info_maintain');
 Route::get('students_courses_maintain', 'StudentsController@courses_maintain')->name('students_courses_maintain');
@@ -33,5 +36,5 @@ Route::get('classrooms_setting', 'SchoolClassesController@classrooms_setting')->
 Route::get('class_students_setting', 'SchoolClassesController@class_students_setting')->name('class_students_setting');
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 

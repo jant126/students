@@ -14,7 +14,7 @@ class Course extends Model
      */
     protected $fillable = [
         'institution_name', 'institution_id', 'course_name',
-        'course_count','course_content'];
+        'course_count','course_content','has_lessons'];
 
 
 }

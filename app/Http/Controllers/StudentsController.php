@@ -67,7 +67,8 @@ class StudentsController extends Controller
     public function index(){
         $students = User::find(Auth::user()->id)->students()->paginate(10);
         if ($students->count() == 0) {
-            session()->flash('info', '暂无学员信息');
+            session()->flash('info', '暂无学生信息,请先增加学生！');
+            return redirect()->route('students.create');
         }
         return view('students.index',compact('students'));
     }

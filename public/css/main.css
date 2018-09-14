@@ -15,26 +15,32 @@ pre{padding:6px 0 0 0; color:#666; line-height:20px; background:#f7f7f7}
 .ui-timepicker-div dl { text-align: left; }
 .ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
 .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
-.ui-timepicker-div td { font-size: 90%; }
+.ui-timepicker-div td { font-size: 90%;  }
+
 .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
 .ui_tpicker_hour_label,.ui_tpicker_minute_label,.ui_tpicker_second_label,.ui_tpicker_millisec_label,.ui_tpicker_time_label{padding-left:20px}
 .ui-state-default, .ui-widget-content .ui-state-default {
-     border: 1px solid #fff;
      background: #fff;
     font-weight: normal;
     color: #555555;
     outline: none;
 }
 .ui-widget-content .ui-slider-handle {
-     border: 1px solid #ddd;
+     border: 1px solid #fff;
      background: #ddd;
     font-weight: normal;
     color: #555555;
     outline: none;
 }
+
 .ui-datepicker td span, .ui-datepicker td a{
-   display: inline-block;
+   display: block;
+    text-align: center;
 }
+
+.ui-datepicker td a:hover{background-color: #f7e1b5;}
+
+
 .ui-datepicker {
    width: 220px;
 }
@@ -44,6 +50,8 @@ pre{padding:6px 0 0 0; color:#666; line-height:20px; background:#f7f7f7}
     font-weight: normal;
     font-family: "microsoft Yahei";
 }
+
+
 .ui-datepicker th {
      padding:0;
     text-align: center;

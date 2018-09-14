@@ -53,8 +53,21 @@ class CoursesController extends Controller
     }
     public function index(){
         $courses = User::find(Auth::user()->id)->courses()->paginate(10);
-        if ($courses->count() == 0) {
-            session()->flash('info', '暂无教师信息');
+        if ($courses->isEmpty()) {
+            session()->flash('info', '暂无课程信息,请先增加课程！');
+            return redirect()->route('courses.create');
+        }
+        return view('courses.index',compact('courses'));
+    }
+    public function needLessons(){
+        //查找未设置lesson的课程
+        $courses = User::find(Auth::user()->id)->courses()
+            ->where(function ($query){
+            $query->where('has_lessons','=' ,'false');
+        })->paginate(10);
+        if ($courses->isEmpty()) {
+            session()->flash('info', '暂无课程需设置课时！');
+            return redirect()->route('courses.index');
         }
         return view('courses.index',compact('courses'));
     }

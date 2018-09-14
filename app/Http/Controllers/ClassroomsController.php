@@ -71,7 +71,8 @@ class ClassroomsController extends Controller
     public function index(){
         $classrooms = User::find(Auth::user()->id)->classrooms()->paginate(10);
         if ($classrooms->count() == 0) {
-            session()->flash('info', '暂无教师信息');
+            session()->flash('info', '暂无教室信息！请先增加教室！');
+            return redirect()->route('classrooms.create');
         }
         return view('classrooms.index',compact('classrooms'));
     }
@@ -81,6 +82,6 @@ class ClassroomsController extends Controller
         //$this->authorize('destroy',$user);
         $classroom->delete();
         session()->flash('success','成功删除教室：'.$classroom->classroom_name);
-        return view('classrooms.index');
+        return redirect()->route('classrooms.index');
     }
 }

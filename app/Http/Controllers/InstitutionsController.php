@@ -65,7 +65,8 @@ class InstitutionsController extends Controller
 
        $institutions = Institution::where('user_id','=',Auth::user()->id)->paginate(10);
         if ($institutions->count() == 0) {
-            session()->flash('info', '暂无教师信息');
+            session()->flash('info', '暂无机构信息，请先增加机构信息！');
+            return redirect()->route('institutions.create');
         }
        return view('institutions.index',compact('institutions'));
     }

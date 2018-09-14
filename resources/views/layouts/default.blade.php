@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta http-equiv="x-ua-compatible" content="ie=7">
     <title>@yield('title', '红鸟软件') </title>
     @section('css_section')
     <link rel="stylesheet" href='/css/app.css'>

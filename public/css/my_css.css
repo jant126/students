@@ -50,4 +50,9 @@
 	-moz-border-radius: 6px 0 6px 6px;
 	border-radius: 6px 0 6px 6px;
 }
+.input-label-text{
+	font-size: 14px;
+	color: #6C7B8B;
+	height: 30px;
+}
 

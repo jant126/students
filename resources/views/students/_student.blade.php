@@ -3,14 +3,16 @@
 <div class="form-group">
     <div class=" row">
         <div class="col-md-6">
-            <label for="student_number">学生学号：</label>
-            <input type="text" name="student_number" class="form-control"
-                   value="{{ old('student_number') }}">
-        </div>
-        <div class="col-md-6">
             <label for="student_name">学生名称：(必须输入)</label>
             <input type="text" name="student_name" class="form-control"
                    value="{{ old('student_name') }}">
+        </div>
+        <div class="col-md-6">
+            <label for="phone">学生手机号码：(必须输入)</label>
+            <input type="text" name="phone" class="form-control"
+                   onkeyup="value = value.replace(/[^\d]/g,'')"
+                   placeholder="请输入手机号码"
+                   value="{{ old('phone') }}">
         </div>
     </div>
 </div>
@@ -19,12 +21,18 @@
 <div class="form-group">
     <div class=" row">
         <div class="col-md-6">
+            <label for="student_join_date">学生入学日期：(必须输入)</label>
+            <input type="text" name="student_join_date" class="form-control"
+                   readonly="readonly"  node-type='datepicker'
+                   value="{{ old('student_join_date')  }}">
+        </div>
+        <div class="col-md-3">
             <label for="student_age">学生年龄：</label>
             <input type="text" name="student_age" class="form-control"
                    onkeyup="value = value.replace(/[^\d]/g,'')"
                    value="{{ old('student_age') }}">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-3">
             <label for="student_sex">学生性别：</label>
             <select type="text" name="student_sex" class="form-control">
                 <option selected value="女">女</option>
@@ -42,11 +50,9 @@
 
         </div>
         <div class="col-md-6">
-            <label for="phone">学生手机号码：(必须输入)</label>
-            <input type="text" name="phone" class="form-control"
-                   onkeyup="value = value.replace(/[^\d]/g,'')"
-                   placeholder="请输入手机号码"
-                   value="{{ old('phone') }}">
+            <label for="student_number">学生学号：</label>
+            <input type="text" name="student_number" class="form-control"
+                   value="{{ old('student_number') }}">
         </div>
     </div>
 </div>
@@ -58,9 +64,7 @@
             <input type="text" name="student_id" class="form-control"  >
         </div>
         <div class="col-md-6">
-            <label for="student_join_date">学生入学日期：(必须输入)</label>
-            <input type="text" name="student_join_date" class="form-control"
-                   node-type='datepicker'  value="{{ old('student_join_date') }}">
+
         </div>
     </div>
 </div>
@@ -76,7 +80,9 @@
         <div class="col-md-6">
             <label for="student_mother_phone">学生母亲手机号码：</label>
             <input type="text" name="student_mother_phone" class="form-control"
-                      value="{{ old('student_mother_phone') }}">
+                   onkeyup="value = value.replace(/[^\d]/g,'')"
+                   placeholder="请输入手机号码"
+                   value="{{ old('student_mother_phone') }}">
         </div>
     </div>
 </div>
@@ -91,6 +97,8 @@
         <div class="col-md-6">
             <label for="student_father_phone">学生父亲手机号码：</label>
             <input type="text" name="student_father_phone" class="form-control"
+                   onkeyup="value = value.replace(/[^\d]/g,'')"
+                   placeholder="请输入手机号码"
                    value="{{ old('student_father_phone') }}">
         </div>
     </div>
