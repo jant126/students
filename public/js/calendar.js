@@ -816,20 +816,20 @@ function mOck(thisObj, v,i){
 		 lx = '0';//周末
 	}
 	lx = '0'; //caidahui 添加，固定工作框内添加日期
-	dayJson = '{ymd:'+nian+addZ(yue)+addZ(day)+',name:'+name+',isWorkDay:';
+	dayJson = '{"ymd":"'+nian+'-'+addZ(yue)+'-'+addZ(day)+'","name":"'+name+'","isWorkDay":"';
 	
 	//isworkday  0 为特殊假日  1 为特殊工作日
 	//var sssss=document.getElementById(ymd).value;<img id='imgchlik' src='../img/false.png'/>加×号的
 	if (type=="workday" || type=="seldaywork") {  //特殊工作日
 		if (onoff == "0") {
-			dayJson += '0}';//添加修改数据
+			dayJson += '0"}';//添加修改数据
 			thisObj.attributes["on"].value='1';
 			document.getElementById("setholiday").innerHTML += "<span class='permannent_calender_date' id="+ymd+">"+ymd+"   "+"<img id='imgclick' value='"+ymd+"' onClick='imgonclick("+ymd+","+ids+","+lx+")' src='../images/false.png'/></span>";//将内容加入框中
 			thisObj.setAttribute("class", "seldaywork");//设定为选中样式
 			
 			hDays.push(dayJson);//加入数组
 		}else if (onoff == "1"){
-			dayJson += '0}';//添加修改数据
+			dayJson += '0"}';//添加修改数据
 			thisObj.attributes["on"].value='0';
 			thisObj.setAttribute("class","workday");//还原样式
 			$("#ymd").remove();
@@ -841,13 +841,13 @@ function mOck(thisObj, v,i){
 		}
 	} else if(type == "holiday" || type=="seldayholiday"){ //特殊假日
 		if (onoff == "0") {
-			dayJson += '1}';//添加修改数据
+			dayJson += '1"}';//添加修改数据
 			thisObj.attributes["on"].value='1';
 			document.getElementById("setworkday").innerHTML += "<span  class='permannent_calender_date' id="+ymd+">"+ymd+"   "+"<img id='imgclick' value='"+ymd+"' onClick='imgonclick("+ymd+","+ids+","+lx+")' src='/images/false.png'/></span>";//将内容加入框中
 			thisObj.setAttribute("class", "seldayholiday");//设定为选中样式
 			hDays.push(dayJson);//加入数组
 		}else if (onoff == "1"){
-			dayJson += '1}';//添加修改数据
+			dayJson += '1"}';//添加修改数据
 			thisObj.attributes["on"].value='0';
 			thisObj.setAttribute("class", "holiday");//还原样式
 			delArry(hDays,dayJson); //删除数据内容
@@ -858,9 +858,9 @@ function mOck(thisObj, v,i){
 		}
 	} else {
 		if(lx =="1"){ //表示工作日 周一到周5 
-			dayJson += '0}';//添加修改数据
+			dayJson += '0"}';//添加修改数据
 		}else if (lx =="0") {
-			dayJson += '1}';//添加修改数据
+			dayJson += '1"}';//添加修改数据
 		}
 		if (onoff == "0") {
 			thisObj.attributes["on"].value='1';
@@ -882,8 +882,34 @@ function mOck(thisObj, v,i){
 		}
 	}
     document.getElementById("setholiday").innerHTML ='所选的日期数：' + hDays.length + '天';
-	for (var i = 0; i < hDays.length; i++)
-		$('#lesson_date_'+i).val(nian+'-'+addZ(yue)+'-'+addZ(day) + ' 18:00:00') ;
+	// var dataJson = eval('('+hDays+')' ) ;//jQuery.parseJSON(hDays[hDays.length-1]);
+    $('input[id^="lesson_date_"]').val('');
+	var dateArray = new Array();
+	for ( var i = 0; i < hDays.length; i++){
+        var dataJson = eval('('+hDays[i]+')');
+		dateArray.push(new Date(dataJson.ymd +' 18:00:00').Format('yyyy-MM-dd HH:mm:ss'));
+	}
+	dateArray.sort(function(a, b){
+        return b < a ? 1 : -1;
+    });
+	for (var i = 0; i < dateArray.length; i++){
+        $('#lesson_date_'+i).val(dateArray[i]);
+    }
+}
+Date.prototype.Format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1, //月份
+        "d+": this.getDate(), //日
+        "H+": this.getHours(), //小时
+        "m+": this.getMinutes(), //分
+        "s+": this.getSeconds(), //秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+        "S": this.getMilliseconds() //毫秒
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
 }
 /**
  * 图片点击X事件

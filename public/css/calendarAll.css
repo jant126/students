@@ -4,7 +4,7 @@
 
 A { text-decoration: none; color: #000000; }
 A:hover { text-decoration: none; }
-TABLE { cellpadding: 0;  margin-left: auto; margin-right: auto; border-collapse: collapse; }
+TABLE {  margin-left: auto; margin-right: auto; border-collapse: collapse; }
 .btn { width: auto; height: 20px; line-height: 22px; padding-left: 7px; padding-right: 7px; margin-top: 2px; float: left; cursor: pointer; margin-left: 5px; overflow: hidden; }
 .btn:hover { text-decoration: none; }
 .btnActive { width: auto; height: 20px; line-height: 22px; padding-left: 7px; padding-right: 7px; margin-top: 2px; float: left; cursor: pointer; margin-left: 5px; overflow: hidden; }
@@ -44,7 +44,7 @@ TABLE { cellpadding: 0;  margin-left: auto; margin-right: auto; border-collapse:
 .main { width: 99%; margin-top: 5px; height: 100%; background-color: #FFFFFF; margin-left: auto; margin-right: auto; overflow: hidden; }
 .bgMain { width: 99%; margin-top: 5px; height: 100%; margin-left: auto; margin-right: auto; overflow: hidden; }
 .indexMain { width: 100%; margin-top: 5px; height: 100%; overflow: hidden; }
-/  .cadTit {
+.cadTit {
 width:260px;
 height:32px;
 overflow:hidden;

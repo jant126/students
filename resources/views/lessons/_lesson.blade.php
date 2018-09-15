@@ -29,7 +29,8 @@
                 <label class="col-sm-6 control-label " for="{{'lesson_date_'.$i}}" >上课日期时间：</label>
                 <div class="col-sm-6 col-md-pull-1">
                     <input class="form-control" type="text"  name="{{'lesson_date_'.$i}}"
-                           id="{{'lesson_date_'.$i}}" node-type='datepicker' style="width: 200px;">
+                           id="{{'lesson_date_'.$i}}" node-type='datepicker'
+                           readonly="readonly" style="width: 200px;">
                 </div>
             </div>
         </div>
