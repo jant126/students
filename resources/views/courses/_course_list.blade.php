@@ -5,11 +5,13 @@
         {{--创建时间：{{ $schoolclass->created_at }}--}}
     </a>
     @if($course->has_lessons == false)
-        <form action="{{ route('create_lessons', $course->id) }}" method="get">
+        <form action="{{ route('lessons.create', $course->id) }}" method="get">
             <button type="submit" class="btn btn-sm btn-info update-btn ">设置课时</button>
         </form>
     @else
-        <button type="submit" class="btn btn-sm btn-info update-btn ">显示课时</button>
+        <form action="{{ route('lessons.show', $course->id) }}" method="get">
+          <button type="submit" class="btn btn-sm btn-info update-btn ">显示课时</button>
+        </form>
     @endif
 
     <form action="{{ route('courses.destroy', $course->id) }}" method="post">

@@ -881,9 +881,10 @@ function mOck(thisObj, v,i){
 			delArry(hDays,dayJson); //删除数据内容
 		}
 	}
-    document.getElementById("setholiday").innerHTML ='所选的日期数：' + hDays.length + '天';
+    // document.getElementById("setholiday").innerHTML ='所选的日期数：' + hDays.length + '天';
 	// var dataJson = eval('('+hDays+')' ) ;//jQuery.parseJSON(hDays[hDays.length-1]);
-    $('input[id^="lesson_date_"]').val('');
+    displaySelectedDay(hDays.length);
+	$('input[id^="lesson_date_"]').val('');
 	var dateArray = new Array();
 	for ( var i = 0; i < hDays.length; i++){
         var dataJson = eval('('+hDays[i]+')');
@@ -895,6 +896,16 @@ function mOck(thisObj, v,i){
 	for (var i = 0; i < dateArray.length; i++){
         $('#lesson_date_'+i).val(dateArray[i]);
     }
+}
+function displaySelectedDay(days) {
+	var lessonsCount = parseInt($('#course_count').val());
+	if (days <= lessonsCount )
+		$('#setholiday').text('所选的日期数：' + days + '天,还差：'
+			+(lessonsCount-days)+'天');
+	else
+        $('#setholiday').text('所选的日期数：'+days+ '天，已多选了：'
+			+(days-lessonsCount)+'天');
+
 }
 Date.prototype.Format = function (fmt) {
     var o = {

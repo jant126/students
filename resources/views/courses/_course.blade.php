@@ -11,7 +11,7 @@
             <input type="text" name="course_count" class="form-control"
                    onkeyup="value = value.replace(/[^\d]/g,'')"
                    placeholder="请输入数字"
-                   value="30">
+                   value="34">
         </div>
     </div>
 </div>

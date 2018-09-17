@@ -108,9 +108,9 @@
         <table  border="1"  cellpadding="5" cellspacing="5" style="margin-top: 10px;
           width: 500px;height: 30px">
             <tr align="center" style="margin-top: 5px;">
-                <td width="80"><input type=button value='提交' class="button6"  onclick=h_submit()></td>
-                <td width="80"><input type=button value="重置" class="button6"  onclick=rebuild()></td>
-                <td width="80"><p id="setholiday">所选的日期数：0 天 </p></td>
+                {{--<td width="80"><input type=button value='提交' class="button6"  onclick=h_submit()></td>--}}
+                {{--<td width="80"><input type=button value="重置" class="button6"  onclick=rebuild()></td>--}}
+                <td width="80"><h4><p id="setholiday">所选的日期数：0 天 </p></h4></td>
                 <!--<td width="20" bgcolor="#cfdff3">&nbsp;</td>-->
                 <!--<td width="80">选 中&nbsp;&nbsp;</td>-->
                 <!-- <td width="20" bgcolor="#CFDFF0">&nbsp;</td>

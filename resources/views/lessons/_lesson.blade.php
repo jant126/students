@@ -19,7 +19,7 @@
                 <div class="col-sm-5 col-md-pull-1">
                     <input class="form-control" type="text" name="{{'how_long_'.$i}}"
                            id="{{'how_long_'.$i}}"  onkeyup="value = value.replace(/[^\d]/g,'')"
-                           value="45">
+                           value="90">
                 </div>
             </div>
         </div>

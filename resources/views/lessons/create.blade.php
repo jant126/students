@@ -8,12 +8,15 @@
 
                 <div class="row ">
                     <div class="col-md-6">
-                        <h4>设置课程: {{ $course->course_name }} - 每节课的时间安排</h4>
+                        <h4>设置课程: {{ $course->course_name }} -
+                            共需安排：{{ $course->course_count }}节课
+                        </h4>
                     </div>
                     <button style="height: fit-content;margin-top: 0;" class="btn btn-primary "
                             data-toggle="modal" data-target="#myModal">打开日历选择上课日期</button>
 
-                    <button style="height: fit-content; margin-top: 0;" class="btn btn-primary " >提交</button>
+                    <button  style="height: fit-content; margin-top: 0;"
+                             class="btn btn-primary " onclick="submitLesson()">提交</button>
                 </div>
             </div>
             <div class="panel-body">
@@ -76,11 +79,13 @@
                                name="course_count" id="course_count">
                         <input type="hidden" value="{{ $course->course_name }}"
                                name="course_name" id="course_name">
+                        <input type="hidden" value="{{ $course->id }}"
+                               name="course_id" id="course_id">
                     @include('lessons._lesson')
             {{ csrf_field() }}
-                    <div class='form-group text-center'>
-                        <button  type="submit" class="btn-lg btn-primary  ">添加</button>
-                    </div>
+                    {{--<div class='form-group text-center'>--}}
+                        {{--<button  type="submit" class="btn-lg btn-primary  ">添加</button>--}}
+                    {{--</div>--}}
 
             </form>
         </div>
@@ -111,7 +116,7 @@
 
      function submitLesson() {
 
-         var count = parseInt($('#course_count').val());
+
          if (checkInput('#lesson_date_', '上课日期时间不能为空！') == false)
              return false;
          if (checkInput('#how_long_', '课时时长不能为空！') == false)
@@ -122,11 +127,16 @@
 
      }
      function checkInput(id,errorMsg) {
+         var count = parseInt($('#course_count').val());
+
          for (var i = 0;i< count;i++){
+
              var $parent = $(id+i).parent();
              $parent.find(".msg").remove(); //删除以前的提醒元素（find()：查找匹配元素集中元素的所有匹配元素）
              if ($(id+i).val() == ""){
                  $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
+                 alert(errorMsg);
+                 $(id+i).focus();
                  return false;
              }
          }

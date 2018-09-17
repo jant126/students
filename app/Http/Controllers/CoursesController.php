@@ -48,7 +48,7 @@ class CoursesController extends Controller
     }
     public function show(Course $course)
     {
-//        dump($schoolclass);
+
         return view('courses.show', compact('course'));
     }
     public function index(){
