@@ -9,8 +9,8 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#" style="padding-top: 5px;"><img src="/images/RedBird.png" height="40px;" alt='RedBird'></a>
-        <a class="navbar-brand" href="#"> 红鸟软件</a>
+        <a class="navbar-brand" href="{{route('home')}}" style="padding-top: 5px;"><img src="/images/RedBird.png" height="40px;" alt='RedBird'></a>
+        <a class="navbar-brand" href="{{route('home')}}"> 红鸟软件</a>
       </div>
      @if( Auth::check() )
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -21,6 +21,9 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 机构管理 <span class="caret"></span></a>
               <ul class="dropdown-menu">
+                <li><a href="{{ route('schedules.create') }}">设置教学计划</a></li>
+                <li><a href="{{ route('schedules.index') }}">查看教学安排</a></li>
+                <li class="divider"></li>
                 <li><a href="{{ route('classrooms.create') }}">新增教室</a></li>
                 <li><a href="{{ route('classrooms.index') }}">教室列表</a></li>
                 <li class="divider"></li>
@@ -34,16 +37,14 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 教师管理 <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <!--教师信息维护三级子菜单-->
-                <li class="dropdown-submenu">
-                  <a href="#">教师信息维护</a>
-                  <ul class="dropdown-menu">
+                {{--<!--教师信息维护三级子菜单-->--}}
+                {{--<li class="dropdown-submenu">--}}
+                  {{--<a href="#">教师信息维护</a>--}}
+                  {{--<ul class="dropdown-menu">--}}
                     <li><a href="{{ route('teachers.create') }}">新增教师</a></li>
                     <li><a href="{{ route('teachers.index') }}">教师列表</a></li>
-                  </ul>
+                  {{--</ul>--}}
                 </li>
-                <li><a href="#">教师课程设置</a></li>
-                <li><a href="{{ route('users.index')  }}">教师列表</a> </li>
               </ul>
             </li>
 

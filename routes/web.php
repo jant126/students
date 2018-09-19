@@ -20,11 +20,19 @@ Route::resource('institutions','InstitutionsController');
 Route::resource('classrooms', 'ClassroomsController');
 Route::resource('schoolclasses','SchoolClassesController');
 Route::resource('courses','CoursesController');
-Route::get('coures/lessons', 'CoursesController@needLessons')->name('needLessons');
+Route::get('courses/lessons', 'CoursesController@needLessons')->name('needLessons');
 Route::resource('teachers', 'TeachersController');
 Route::resource('students', 'StudentsController');
+//Route::resource('schedules', 'SchedulesController');
 //Route::resource('lessons', 'LessonsController');
 //Route::get('schoolclasses/{schoolclasses}', 'SchoolClassesController@show');
+Route::get('schedules/create', 'SchedulesController@create')->name('schedules.create');
+Route::post('schedules', 'SchedulesController@store')->name('schedules.store');
+Route::get('schedules/{class_id}/{course_id}/{teacher_id}', 'SchedulesController@show')
+    ->name('schedules.show');
+Route::get('schedules', 'SchedulesController@index')->name('schedules.index');
+Route::any('schedules/schedule/{institution}', 'SchedulesController@setSchedule')->name('schedules.setSchedule');
+
 Route::get('/lessons/{course}/create', 'LessonsController@create')->name('lessons.create');
 Route::get('lessons/{course}','LessonsController@show')->name('lessons.show');
 Route::patch('lessons/{course}','LessonsController@update')->name('lessons.update');

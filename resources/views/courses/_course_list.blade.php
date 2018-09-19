@@ -6,7 +6,7 @@
     </a>
     @if($course->has_lessons == false)
         <form action="{{ route('lessons.create', $course->id) }}" method="get">
-            <button type="submit" class="btn btn-sm btn-info update-btn ">设置课时</button>
+            <button type="submit" class="btn btn-sm btn-warning update-btn ">设置课时</button>
         </form>
     @else
         <form action="{{ route('lessons.show', $course->id) }}" method="get">

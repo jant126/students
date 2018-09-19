@@ -75,6 +75,6 @@ class InstitutionsController extends Controller
         //$this->authorize('destroy',$user);
         $institution->delete();
         session()->flash('success','成功删除机构：'.$institution->institution_name);
-        return view('institutions.index');
+        return redirect()->route('institutions.index');
     }
 }

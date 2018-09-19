@@ -57,7 +57,9 @@ class TeachersController extends Controller
         return view('teachers.show', compact('teacher'));
     }
     public function index(){
-        $teachers = User::find(Auth::user()->id)->teachers()->paginate(10);
+        $teachers = User::find(Auth::user()->id)->teachers()
+            ->where('teacher_status','=',Teacher::InService)
+            ->paginate(10);
         if ($teachers->count() == 0) {
             session()->flash('info', '暂无教师信息，请先增加教师！');
             return redirect()->route('teachers.create');
@@ -98,7 +100,8 @@ class TeachersController extends Controller
         // $user_name = $user->name;
         //$this->authorize('destroy',$user);
         User::where('phone','=',$teacher->phone)->delete();
-        $teacher->delete();
+//        $teacher->delete();
+        $teacher->teacher_status=Teacher::Dimission;
         session()->flash('success','成功删除班级：'.$teacher->teacher_name);
         return redirect()->route('teachers.index');
     }

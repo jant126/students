@@ -33,6 +33,7 @@ class LessonsController extends Controller
         $course = Course::find($request->course_id);
         $course->has_lessons=true;
         $course->save();
+        session()->flash('success', '课时信息新增成功！');
         return view('lessons.show', compact('lessons'),compact('course'));
     }
     public  function edit(Course $course){
@@ -41,6 +42,7 @@ class LessonsController extends Controller
 }
     public function show(Course $course)
     {
+
         $lessons = Lesson::where('course_id','=',$course->id)->get();
         return view('lessons.show',compact('lessons'),compact('course'));
     }
@@ -56,32 +58,33 @@ class LessonsController extends Controller
 //            '",how_long ="'.$request->input('how_long_0').
 //            '" where course_id = 1 and lesson_index = 0';
 
-        foreach($lessons as $lesson){
-            $sql = 'update lessons set lesson_name ="'.$request->input('lesson_name_'.$lesson->lesson_index).
-                '", lesson_date="'.substr($request->input('lesson_date_'.$lesson->lesson_index),0,10).
-                '", lesson_time="'.substr($request->input('lesson_date_'.$lesson->lesson_index),11,8).
-                '",how_long ="'.$request->input('how_long_'.$lesson->lesson_index).
-                '" where course_id ='.$lesson->course_id.' and lesson_index = '.$lesson->lesson_index;
-            DB::update($sql);
-//            DB::table('lessons')->where(['course_id' => $lesson->course_id,
-//                       'lesson_index' =>$lesson->lesson_index])
-//                ->update([
-//                    'lesson_name' => $request->input('lesson_name_'.$lesson->lesson_index),
-//                    'lesson_date' => substr($request->input('lesson_date_'.$lesson->lesson_index),0,10),
-//                    'lesson_time' => substr($request->input('lesson_date_'.$lesson->lesson_index),11,8),
-//                    'how_long' =>$request->input('how_long_'.$lesson->lesson_index)
-//                ]);
-        }
-//        $lessons = Course::find($course->id)->lessons();
-//        $lessons =Lesson::where('course_id','=',$course->id)->get();
 //        foreach($lessons as $lesson){
-//            $data=[];
-//            $data['lesson_name'] = $request->input('lesson_name_'.$lesson->lesson_index);
-//            $data['lesson_date'] = substr($request->input('lesson_date_'.$lesson->lesson_index),0,10);
-//            $data['lesson_time'] = substr($request->input('lesson_date_'.$lesson->lesson_index),11,8);
-//            $data['how_long'] = $request->input('how_long_'.$lesson->lesson_index);
-//            $lesson->update($data);
+//            $sql = 'update lessons set lesson_name ="'.$request->input('lesson_name_'.$lesson->lesson_index).
+//                '", lesson_date="'.substr($request->input('lesson_date_'.$lesson->lesson_index),0,10).
+//                '", lesson_time="'.substr($request->input('lesson_date_'.$lesson->lesson_index),11,8).
+//                '",how_long ="'.$request->input('how_long_'.$lesson->lesson_index).
+//                '" where course_id ='.$lesson->course_id.' and lesson_index = '.$lesson->lesson_index;
+//            DB::update($sql);
+////            DB::table('lessons')->where(['course_id' => $lesson->course_id,
+////                       'lesson_index' =>$lesson->lesson_index])
+////                ->update([
+////                    'lesson_name' => $request->input('lesson_name_'.$lesson->lesson_index),
+////                    'lesson_date' => substr($request->input('lesson_date_'.$lesson->lesson_index),0,10),
+////                    'lesson_time' => substr($request->input('lesson_date_'.$lesson->lesson_index),11,8),
+////                    'how_long' =>$request->input('how_long_'.$lesson->lesson_index)
+////                ]);
 //        }
+        $lessons =Lesson::where('course_id','=',$course->id)->get();
+        foreach($lessons as $lesson){
+            $data=[];
+            $data['lesson_name'] = $request->input('lesson_name_'.$lesson->lesson_index);
+            $data['lesson_date'] = substr($request->input('lesson_date_'.$lesson->lesson_index),0,10);
+            $data['lesson_time'] = substr($request->input('lesson_date_'.$lesson->lesson_index),11,8);
+            $data['how_long'] = $request->input('how_long_'.$lesson->lesson_index);
+//            $lesson->update($data);
+            Lesson::where(['course_id' => $lesson->course_id,
+                'lesson_index' => $lesson->lesson_index])->update($data);
+        }
         session()->flash('success', '课时信息更新成功！');
         return redirect()->route('lessons.show', $course);
     }

@@ -15,9 +15,6 @@ class Course extends Model
     protected $fillable = [
         'institution_name', 'institution_id', 'course_name',
         'course_count','course_content','has_lessons'];
-    public function lessons()
-    {
-        return $this->hasManyThrough('App\Models\Lesson', 'App\Models\Course');
-    }
+
 
 }

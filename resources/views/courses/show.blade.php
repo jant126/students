@@ -5,7 +5,7 @@
     <div class="col-md-offset-2 col-md-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1>新增课程信息</h1>
+                <h3>新增课程信息</h3>
             </div>
             <div class="panel-body">
                 @include('shared._errors')

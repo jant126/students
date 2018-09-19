@@ -40,4 +40,16 @@ class Institution extends Model
     public function classrooms(){
        return $this->hasMany('App\Models\Classroom');
     }
+//通过一对多关联，返回多个teacher模型
+    public function teachers(){
+        return $this->hasMany('App\Models\Teacher');
+    }
+
+    public function courses(){
+        return $this->hasMany('App\Models\Course');
+    }
+
+    public function classes(){
+        return $this->hasMany('App\Models\SchoolClass');
+    }
 }

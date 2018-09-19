@@ -18,4 +18,5 @@ class Lesson extends Model
     protected $primaryKey = ['course_id','lesson_index'];
     public $incrementing = false;
 
+
 }

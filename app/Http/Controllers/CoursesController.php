@@ -7,6 +7,7 @@ use App\Models\Institution;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CoursesController extends Controller
 {
@@ -90,8 +91,10 @@ class CoursesController extends Controller
     public function destroy(Course $course){
         // $user_name = $user->name;
         //$this->authorize('destroy',$user);
+
+        $num=DB::table("lessons")->where('course_id','=',$course->id)->delete();//删除多条
         $course->delete();
-        session()->flash('success','成功删除课程：'.$course->course_name);
-        return view('courses.index');
+        session()->flash('success','成功删除课程：'.$course->course_name.'- 删除'.$num.'节课时');
+        return redirect()->route('courses.index');
     }
 }
