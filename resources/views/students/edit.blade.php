@@ -34,12 +34,12 @@
                     <div class="col-md-6">
                         <label for="student_join_date">学生入学日期：(必须输入)</label>
                         <input type="text" name="student_join_date" class="form-control"
-                               node-type='datepicker'  value="{{ old('student_join_date') }}">
+                               node-type='datepicker'  value="{{ $student->student_join_date }}">
                     </div>
 
                     <div class="col-md-3">
                         <label for="institution_name">学生所属机构：</label>
-                        @include('shared._institution_list_default')
+                        @include('shared._institution_list')
                     </div>
                     <div class="col-md-3">
                         <label for="student_number">学生学号：</label>

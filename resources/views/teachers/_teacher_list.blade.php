@@ -1,5 +1,6 @@
 <li>
     <a href="{{ route('teachers.show', $teacher->id) }}" >
+        机构： {{ $teacher->institution_name }}  -
         教师名称： {{ $teacher->teacher_name }}  -
         教师性别：    {{ $teacher->teacher_sex }}
         {{--创建时间：{{ $schoolclass->created_at }}--}}
@@ -18,7 +19,7 @@
      教师简介：</label> {{ $teacher->teacher_content }}
      <br>
       <label> 教师手机号码：</label> {{ $teacher->phone }}
-        <br>
-      <label> 教师微信OpenID：</label> {{ $teacher->teacher_WeiXinOpenId }}
+        {{--<br>--}}
+      {{--<label> 教师微信OpenID：</label> {{ $teacher->teacher_WeiXinOpenId }}--}}
     </span>
 </li>

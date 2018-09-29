@@ -15,6 +15,15 @@
             <button type="submit" class="btn btn-primary">添加</button>
             </form>
         </div>
+        <div class="panel-footer" id="courses_list" >
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $.get("{{route('displayCourses')}}",function (result) {
+                        $('#courses_list').html(result);
+                    })
+                })
+            </script>
+        </div>
     </div>
     </div>
 @stop

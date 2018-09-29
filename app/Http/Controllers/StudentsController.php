@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StudentSchedule;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Institution;
@@ -18,12 +19,15 @@ class StudentsController extends Controller
     }
     public function create(){
         $institutions = Institution::where('user_id','=',Auth::user()->id)->get();
+        $schedules = User::find(Auth::user()->id)->schedules()
+            ->orderBy('institution_id')->orderBy('class_id')
+            ->orderBy('course_id')->orderBy('teacher_id')->get();
         if (count($institutions)< 1){
             session()->flash('danger','您还没设置机构，请先增加一个机构！');
             return view('institutions.create');
         }
         else
-            return view('students.create',compact('institutions'));
+            return view('students.create',compact('institutions','schedules'));
     }
     public function store(Request $request){
         $this->validate($request, [
@@ -32,7 +36,9 @@ class StudentsController extends Controller
             'student_join_date' => 'required|date',
             'phone' => 'required|unique:users|digits:11'
         ]);
-//        dump($request);
+        $schedules = $request->schedules_list;
+//        dump($schedules,explode("_",$schedules[1]));
+//        dump($request->schedules_list);
         $student = Student::create([
             'institution_id' => $request->institution_id,
             'institution_name' => $request->institution_name,
@@ -48,11 +54,31 @@ class StudentsController extends Controller
             'student_father_name' => $request->student_father_name,
             'student_father_phone' => $request->student_father_phone
         ]);
+        $this->saveSelectedSchedule($request->schedules_list, $student);
     //用学生的手机号码、学生名 创建家长用户，用户类型有：教师用户、家长用户、管理员
         User::createUser($request->student_name,$request->phone,User::StudentUser,Auth::user()->id);
         // Auth::login($user);
         session()->flash('success','学生添加成功！学生信息如下：');
         return redirect()->route('students.show',[$student]);
+    }
+
+    public  function saveSelectedSchedule($schedules,$student){
+        foreach ($schedules as $schedule){
+            $studentSchedule=explode("_",$schedule);
+            StudentSchedule::create([
+                'schedule_id' => $studentSchedule[0],
+                'institution_id' => $studentSchedule[1],
+                'institution_name' => $studentSchedule[2],
+                'class_id' => $studentSchedule[3],
+                'class_name' => $studentSchedule[4],
+                'course_id' => $studentSchedule[5],
+                'course_name' => $studentSchedule[6],
+                'teacher_id' => $studentSchedule[7],
+                'teacher_name' => $studentSchedule[8],
+                'student_id' => $student->id,
+                'student_name' => $student->student_name,
+            ]);
+        }
     }
     public  function edit(Student $student){
         $institutions = Institution::where('user_id','=',Auth::user()->id)->get();

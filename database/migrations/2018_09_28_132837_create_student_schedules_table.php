@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSchedulesTable extends Migration
+class CreateStudentSchedulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateSchedulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('schedules', function (Blueprint $table) {
-//            $table->increments('schedule_id')->unique();
+        Schema::create('student_schedules', function (Blueprint $table) {
             $table->integer('id')->increments()->unique();
             $table->timestamps();
+            $table->unsignedInteger('student_id');
+            $table->unsignedInteger('schedule_id');
             $table->unsignedInteger('teacher_id');
             $table->unsignedInteger('course_id');
             $table->unsignedInteger('class_id');
@@ -25,15 +26,13 @@ class CreateSchedulesTable extends Migration
             $table->string('class_name');
             $table->string('course_name');
             $table->string('institution_name');
-            $table->boolean('has_started')->default(false);
-            $table->boolean('has_cancelled')->default(false);
-            $table->unsignedInteger('classroom_id')->nullable();
-            $table->string('classroom_name')->nullable();
+            $table->string('student_name');
+            $table->foreign('student_id')->references('id')->on('students');
             $table->foreign('institution_id')->references('id')->on('institutions');
             $table->foreign('course_id')->references('id')->on('courses');
             $table->foreign('teacher_id')->references('id')->on('teachers');
             $table->foreign('class_id')->references('id')->on('school_classes');
-            $table->primary(['institution_id','course_id','teacher_id','class_id']);
+            $table->primary(['student_id','schedule_id']);
         });
     }
 
@@ -44,6 +43,6 @@ class CreateSchedulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('schedules');
+        Schema::dropIfExists('student_schedules');
     }
 }

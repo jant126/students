@@ -16,13 +16,21 @@
     <br>
 
     <span class="content">
-        <label for="content">学生学号：</label> {{ $student->student_number }}  -
-        <label for="content">学生身份证号码：</label> {{ $student->student_id }} - <br>
+    @if(!empty($student->student_number))
+            <label for="content">学生学号：</label> {{ $student->student_number }}  -
+        @endif
+        @if(!empty($student->student_id))
+            <label for="content">学生身份证号码：</label> {{ $student->student_id }} - <br>
+        @endif
         <label for="content">学生手机号码：</label> {{ $student->phone }} -
         <label for="content">学生入学日期：</label> {{ $student->student_join_date }}  <br>
-        <label for="content">学生母亲姓名：</label> {{ $student->student_mother_name }} -
-        <label for="content">学生母亲手机号码：</label> {{ $student->student_mother_phone }} <br>
-        <label for="content">学生父亲姓名：</label> {{ $student->student_father_name }} -
-        <label for="content">学生父亲手机号码：</label> {{ $student->student_father_phone }} <br>
+        @if(!empty($student->student_mother_name))
+            <label for="content">学生母亲姓名：</label> {{ $student->student_mother_name }} -
+            <label for="content">学生母亲手机号码：</label> {{ $student->student_mother_phone }} <br>
+        @endif
+        @if(!empty($student->student_father_name))
+            <label for="content">学生父亲姓名：</label> {{ $student->student_father_name }} -
+            <label for="content">学生父亲手机号码：</label> {{ $student->student_father_phone }} <br>
+        @endif
     </span>
 </li>

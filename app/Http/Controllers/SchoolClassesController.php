@@ -64,6 +64,13 @@ class SchoolClassesController extends Controller
         }
         return view('schoolclasses.index',compact('schoolclasses'));
     }
+    public function displaySchoolClasses(){
+        $schoolclasses = User::find(Auth::user()->id)->schoolclasses()->paginate(10);
+        if ($schoolclasses->count() == 0)
+            session()->flash('info', '暂无班级信息！');
+        else
+            return view('schoolclasses.show_schoolclasses',compact('schoolclasses'));
+    }
     public function update(SchoolClass $schoolclass, Request $request){
         $this->validate($request,[
             'class_name' => 'required',

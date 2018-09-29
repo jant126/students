@@ -95,7 +95,7 @@
               <ul class="dropdown-menu">
                 <li><a href="{{ route('courses.create') }}">新增课程</a></li>
                 <li><a href="{{ route('courses.index') }}">课程列表</a></li>
-                <li><a href="{{ route('needLessons') }}">设置课程课时</a></li>
+                {{--<li><a href="{{ route('needLessons') }}">设置课程课时</a></li>--}}
               </ul>
             </li>
 

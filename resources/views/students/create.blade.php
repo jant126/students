@@ -15,6 +15,7 @@
             <button type="submit" class="btn btn-primary">添加</button>
             </form>
             </div>
+
         </div>
     </div>
 @stop

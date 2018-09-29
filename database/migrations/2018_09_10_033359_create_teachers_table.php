@@ -23,6 +23,8 @@ class CreateTeachersTable extends Migration
             $table->string('teacher_WeiXinOpenID')->nullable();
             $table->string('institution_name');
             $table->unsignedInteger('institution_id');
+            //新增老师，默认在职，如果删除，不进行实际删除操作，只将状态设置为离职（即dimission）
+            $table->string('teacher_status')->default(\App\Models\Teacher::InService);
             $table->foreign('institution_id')->references('id')->on('institutions');
         });
     }

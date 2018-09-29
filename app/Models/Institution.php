@@ -36,19 +36,27 @@ class Institution extends Model
         $institutions = $user->institutions()->paginate(10);
         return view('institutions.show',compact('institutions','user'));
     }
-
+/*
+ * 获取一机构的所有教室
+ */
     public function classrooms(){
        return $this->hasMany('App\Models\Classroom');
     }
-//通过一对多关联，返回多个teacher模型
+/*
+ * 通过一对多关联，获取机构的所有教师
+ */
     public function teachers(){
         return $this->hasMany('App\Models\Teacher');
     }
-
+/*
+ * 获取机构的所有课程
+ */
     public function courses(){
         return $this->hasMany('App\Models\Course');
     }
-
+/*
+ * 获取机构的所有班级
+ */
     public function classes(){
         return $this->hasMany('App\Models\SchoolClass');
     }

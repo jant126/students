@@ -18,7 +18,7 @@ class CreateClassroomsTable extends Migration
             $table->timestamps();
             $table->unsignedInteger('institution_id');
             $table->string('institution_name');
-            $table->string('classroom_address');
+            $table->string('classroom_address')->nullable();
             $table->string('classroom_name');
             $table->string('classroom_content')->nullable();
             $table->foreign('institution_id')->references('id')->on('institutions');

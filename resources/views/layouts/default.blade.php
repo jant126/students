@@ -10,9 +10,10 @@
 
     @section('js_section')
     <script src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
     @show
   </head>
-  <body>
+  <body >
     @include('layouts._header')
     <div class="container">
       <div class="col-md-offset-1 col-md-10">

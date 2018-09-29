@@ -1,6 +1,6 @@
-<select id = "institution_list" name="institution_list" class="form-control"
-        onchange="$('#institution_name').val( $.trim($('#institution_list option:selected').text()));
- $('#institution_id').val( $('#institution_list option:selected').val());">
+<select id = "institutions_list" name="institutions_list" class="form-control"
+        onchange="$('#institution_name').val( $.trim($('#institutions_list option:selected').text()));
+ $('#institution_id').val( $('#institutions_list option:selected').val());">
     @foreach( $institutions as $institution)
             <option value="{{ $institution->id }}" >
                 {{ $institution->institution_name }}</option>

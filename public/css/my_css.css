@@ -56,3 +56,14 @@
 	height: 30px;
 }
 
+.icon-list{
+	width:10px;
+	height:10px;
+	font-style:normal;
+}
+.icon-list img{
+	max-width:100%;
+	min-height:100%;
+	display:block;
+	font-size:0;
+}

@@ -6,7 +6,7 @@
 
 @section('js_section')
     @parent
-    <script type="text/javascript" src="/js/jquery.js"></script>
+
     <script type="text/javascript" src="/js/jquery-ui.js"></script>
     <script type="text/javascript" src="/js/jquery-ui-slide.min.js"></script>
     <script type="text/javascript" src="/js/jquery-ui-timepicker-addon.js"></script>

@@ -9,7 +9,7 @@ use App\Models\Institution;
 use Auth;
 class ClassroomsController extends Controller
 {
-    //
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -69,7 +69,7 @@ class ClassroomsController extends Controller
     }
 
     public function index(){
-        $classrooms = User::find(Auth::user()->id)->classrooms()->paginate(10);
+        $classrooms = User::find(Auth::user()->id)->classrooms()->orderBy('institution_id')->paginate(10);
         if ($classrooms->count() == 0) {
             session()->flash('info', '暂无教室信息！请先增加教室！');
             return redirect()->route('classrooms.create');
@@ -77,6 +77,13 @@ class ClassroomsController extends Controller
         return view('classrooms.index',compact('classrooms'));
     }
 
+    public function displayClassrooms(){
+        $classrooms = User::find(Auth::user()->id)->classrooms()->orderBy('institution_id')->paginate(10);
+        if ($classrooms->count() == 0)
+            session()->flash('info', '暂无教室信息！');
+        else
+            return view('classrooms._show_classrooms',compact('classrooms'));
+    }
     public function destroy(Classroom $classroom){
         // $user_name = $user->name;
         //$this->authorize('destroy',$user);

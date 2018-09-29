@@ -26,7 +26,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
+/*
+ * 获取用户的所有机构
+ */
     public function institutions()
     {
         return $this->hasMany(Institution::class);
@@ -69,6 +71,12 @@ class User extends Authenticatable
     public function students()
     {
         return $this->hasManyThrough('App\Models\Student', 'App\Models\Institution');
+    }
+/*
+ * 获取用户的所有教学计划
+ */
+    public function schedules(){
+        return $this->hasManyThrough('App\Models\Schedule', 'App\Models\Institution');
     }
 
     public static function createUser($name,$phone,$role,$creator_id)

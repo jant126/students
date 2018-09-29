@@ -59,13 +59,22 @@ class TeachersController extends Controller
     public function index(){
         $teachers = User::find(Auth::user()->id)->teachers()
             ->where('teacher_status','=',Teacher::InService)
-            ->paginate(10);
+            ->orderBy('institution_id')->paginate(10);
         if ($teachers->count() == 0) {
             session()->flash('info', '暂无教师信息，请先增加教师！');
             return redirect()->route('teachers.create');
         }
 //        dump($teachers);
         return view('teachers.index',compact('teachers'));
+    }
+    public function displayTeachers(){
+        $teachers = User::find(Auth::user()->id)->teachers()
+            ->where('teacher_status','=',Teacher::InService)
+            ->orderBy('institution_id')->paginate(10);
+        if ($teachers->count() == 0)
+            session()->flash('info', '暂无教师信息！');
+        else
+            return view('teachers.show_teachers',compact('teachers'));
     }
     public function update(Teacher $teacher, Request $request){
 

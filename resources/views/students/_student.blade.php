@@ -1,5 +1,5 @@
 @include('shared._datetimepicker')
-
+@include('shared._select_with_search')
 <div class="form-group">
     <div class=" row">
         <div class="col-md-6">
@@ -50,9 +50,8 @@
 
         </div>
         <div class="col-md-6">
-            <label for="student_number">学生学号：</label>
-            <input type="text" name="student_number" class="form-control"
-                   value="{{ old('student_number') }}">
+            <label for="schedules_list">请选择课程：</label>
+            @include('shared._schedules_list')
         </div>
     </div>
 </div>
@@ -64,7 +63,9 @@
             <input type="text" name="student_id" class="form-control"  >
         </div>
         <div class="col-md-6">
-
+            <label for="student_number">学生学号：</label>
+            <input type="text" name="student_number" class="form-control"
+                   value="{{ old('student_number') }}">
         </div>
     </div>
 </div>
@@ -90,7 +91,7 @@
 <div class="form-group">
     <div class=" row">
         <div class="col-md-6">
-            <label for="student_father_name">学生父亲亲姓名：</label>
+            <label for="student_father_name">学生父亲姓名：</label>
             <input type="text" name="student_father_name" class="form-control"
                    value="{{ old('student_father_name') }}">
         </div>

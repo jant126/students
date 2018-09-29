@@ -15,6 +15,14 @@ Route::post('login',	'SessionsController@store')->name('login');
 Route::delete('logout', 'SessionsController@destroy')->name('logout');
 
 Route::get('signup', 'UsersController@create')->name('signup');
+
+Route::get('classrooms/display/classrooms', 'ClassroomsController@displayClassrooms')->name('displayClassrooms');
+Route::get('teachers/display/teachers','TeachersController@displayTeachers')->name('displayTeachers');
+Route::get('courses/display/courses','CoursesController@displayCourses')->name('displayCourses');
+Route::get('schoolclasses/display/schoolclasses','SchoolClassesController@displaySchoolClasses')
+    ->name('displaySchoolClasses');
+Route::get('schedules/display/schedules','SchedulesController@displaySchedules')->name('displaySchedules');
+
 Route::resource('users', 'UsersController');
 Route::resource('institutions','InstitutionsController');
 Route::resource('classrooms', 'ClassroomsController');
@@ -28,8 +36,13 @@ Route::resource('students', 'StudentsController');
 //Route::get('schoolclasses/{schoolclasses}', 'SchoolClassesController@show');
 Route::get('schedules/create', 'SchedulesController@create')->name('schedules.create');
 Route::post('schedules', 'SchedulesController@store')->name('schedules.store');
-Route::get('schedules/{class_id}/{course_id}/{teacher_id}', 'SchedulesController@show')
-    ->name('schedules.show');
+Route::get('schedules/{institution_id}/{class_id}/{course_id}/{teacher_id}',
+    'SchedulesController@show')->name('schedules.show');
+Route::get('schedules/{institution_id}/{class_id}/{course_id}/{teacher_id}/edit',
+    'SchedulesController@edit')->name('schedules.edit');
+Route::patch('schedules','SchedulesController@update')->name('schedules.update');
+Route::delete('schedules/{institution_id}/{class_id}/{course_id}/{teacher_id}',
+    'SchedulesController@destroy')->name('schedules.destroy');
 Route::get('schedules', 'SchedulesController@index')->name('schedules.index');
 Route::any('schedules/schedule/{institution}', 'SchedulesController@setSchedule')->name('schedules.setSchedule');
 

@@ -17,8 +17,7 @@
     <span class="content"><label for="content">
      班级简介：</label> {{ $schoolclass->class_content }}
      <br>
-      <label> 开班时间：</label> {{ $schoolclass->class_start }}
-        <br>
+      <label> 开班时间：</label> {{ $schoolclass->class_start }} -
       <label> 结束时间：</label> {{ $schoolclass->class_end }}
         <br>
       <label> 所属机构：</label> {{ $schoolclass->institution_name }}

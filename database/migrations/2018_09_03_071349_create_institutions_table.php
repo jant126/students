@@ -17,10 +17,10 @@ class CreateInstitutionsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->index(); //设置创建者ID
             $table->string('institution_name');
-            $table->string('institution_code');
-            $table->text('institution_content');
-            $table->string('institution_address');
-            $table->string('institution_legal_person');
+            $table->string('institution_code')->nullabel();
+            $table->text('institution_content')->nullabel();
+            $table->string('institution_address')->nullabel();
+            $table->string('institution_legal_person')->nullabel();
             $table->timestamps();
 
         });
